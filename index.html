@@ -1,79 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flower Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('https://w0.peakpx.com/wallpaper/496/786/HD-wallpaper-garden-oasis-3d-angelic-floral-gardens-gorgeous-heavenly-spring-flowers-tranquility.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-        header {
-            background-color: rgba(255, 255, 255, 0.7);
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: rgba(0, 0, 0, 0.5);
-            overflow: hidden;
-            display: flex;
-            justify-content: space-evenly;
-        }
-        nav a {
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        .container {
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            margin: 20px auto;
-            max-width: 800px;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            text-align: justify;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PBB COLAB LIVE — Embedded Video</title>
+  <style>
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:Inter, Arial, sans-serif;
+      background:url('background.jpg') no-repeat center center/cover;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      color:white;
+    }
+
+    .title{
+      font-weight:700;
+      letter-spacing:2px;
+      font-size:clamp(18px, 3vw, 26px);
+      background:rgba(0,0,0,0.5);
+      padding:10px 20px;
+      border-radius:10px;
+      margin-bottom:12px;
+      text-align:center;
+    }
+
+    .video-container{
+      position:relative;
+      width:90%;
+      max-width:916px;
+      aspect-ratio:16/9;
+      box-shadow:0 8px 24px rgba(0,0,0,0.5);
+      border-radius:12px;
+      overflow:hidden;
+    }
+
+    iframe{
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .fullscreen-btn{
+      margin-top:12px;
+      background:rgba(255,255,255,0.1);
+      border:1px solid rgba(255,255,255,0.2);
+      color:white;
+      padding:8px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.2s;
+    }
+
+    .fullscreen-btn:hover{background:rgba(255,255,255,0.2)}
+
+    .pseudo-fullscreen{
+      position:fixed !important;
+      top:0;left:0;right:0;bottom:0;
+      width:100vw !important;
+      height:100vh !important;
+      z-index:99999;
+      margin:0 !important;
+      border-radius:0 !important;
+    }
+  </style>
 </head>
 <body>
+  <div class="title">PBB COLAB LIVE</div>
+  <div id="videoContainer" class="video-container">
+    <iframe id="pbbVideo" width="916" height="389" src="https://www.youtube.com/embed/BGxBURv_gr8" title="Kapuso Stream: Pinoy Big Brother Collab Edition 2.0 | ALL-ACCESS LIVESTREAM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <button id="fsBtn" class="fullscreen-btn">Toggle Fullscreen</button>
 
-<header>
-    <h1>Flowers</h1>
-</header>
+  <script>
+    const container = document.getElementById('videoContainer');
+    const fsBtn = document.getElementById('fsBtn');
 
-<nav>
-    <a href="index.html">Home</a>
-    <a href="types.html">Types</a>
-    <a href="about.html">About</a>
-</nav>
+    function toggleFullscreen(){
+      if(document.fullscreenElement){
+        document.exitFullscreen();
+      } else {
+        if(container.requestFullscreen){
+          container.requestFullscreen();
+        }
+      }
+    }
 
-<div class="container">
-    <section id="home">
-        <h2>About Flowers</h2>
-        <p>Flowers are the reproductive structures found in flowering plants, also known as angiosperms. They serve as the means by which these plants reproduce, facilitating the process of pollination and ultimately leading to the production of seeds. Structurally, flowers typically consist of several parts: the male reproductive organs, called stamens, which produce pollen; the female reproductive organs, known as carpels, which contain the ovules; and often, petals and sepals, which protect the reproductive organs and attract pollinators.
-<br>
-<br>
-The diversity of flowers is vast, with an incredible array of colors, shapes, sizes, and scents, all evolved to appeal to specific pollinators such as bees, butterflies, birds, and bats. This mutualistic relationship between flowers and pollinators is crucial for the survival of both parties and plays a vital role in maintaining ecosystem health and biodiversity.
-<br>
-<br>
-Beyond their reproductive function, flowers hold significant cultural and symbolic meanings in various societies worldwide. They are often used in ceremonies, celebrations, and rituals, and are valued for their aesthetic beauty and ability to evoke emotions. From ancient times to the present day, flowers continue to captivate and inspire humans, symbolizing love, beauty, renewal, and the ephemeral nature of life.</p>
-    </section>
-</div>
-
+    fsBtn.addEventListener('click', toggleFullscreen);
+  </script>
 </body>
 </html>
